@@ -1,0 +1,46 @@
+
+    <div class="thead">
+        <div *ngIf="locationsAirQuality.length > 0">
+            <table class="table">
+                <thead>
+                    <tr *ngIf="!hiddenRows.includes(i)">
+                    <th></th>
+                    <th (click)="sortTable('id')">ID</th>
+                    <th (click)="sortTable('name')">Name</th>
+                    <th (click)="sortTable('aqi')">AQI</th>
+                    <th (click)="sortTable('co')">CO</th>
+                    <th (click)="sortTable('no')">NO</th>
+                    <th (click)="sortTable('no2')">N<sub>2</sub></th>
+                    <th (click)="sortTable('o3')">O<sub>3</sub></th>
+                    <th (click)="sortTable('so2')">SO<sub>2</sub></th>
+                    <th (click)="sortTable('pm2_5')">PM2<sub>5</sub></th>
+                    <th (click)="sortTable('pm10')">pm<sub>10</sub></th>
+                    <th (click)="sortTable('nh3')">nh<sub>3</sub></th>
+                    <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let data of locationsAirQuality; let i = index;">
+                        <tr *ngIf="!hiddenRows.includes(i)">
+                          <td><input type="checkbox" [checked]="isSelected(data)" (change)="toggleSelection(data)"></td>
+                          <td>{{ data.id }}</td>
+                          <td>{{ data.name }}</td>
+                          <td>{{ data.airQuality[0].main.aqi }}</td>
+                          <td>{{ data.airQuality[0].components.co }}</td>
+                          <td>{{ data.airQuality[0].components.no }}</td>
+                          <td>{{ data.airQuality[0].components.no2 }}</td>
+                          <td>{{ data.airQuality[0].components.o3 }}</td>
+                          <td>{{ data.airQuality[0].components.so2 }}</td>
+                          <td>{{ data.airQuality[0].components.pm2_5 }}</td>
+                          <td>{{ data.airQuality[0].components.pm10 }}</td>
+                          <td>{{ data.airQuality[0].components.nh3 }}</td>
+                          <td><button class="btn btn-outline-danger" (click)="deleteItem(data.id)">delete</button></td>
+                        </tr>
+                      </ng-container>
+                </tbody>
+        </table>
+        
+        </div>
+
+    </div>
+
